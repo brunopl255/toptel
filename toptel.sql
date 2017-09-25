@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 25, 2017 at 06:19 PM
+-- Generation Time: Sep 25, 2017 at 07:38 PM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -43,7 +43,7 @@ CREATE TABLE `cliente` (
   `Nome` char(60) NOT NULL,
   `Email` char(30) DEFAULT NULL,
   `Telefone` int(12) DEFAULT NULL,
-  `Senha` char(24) NOT NULL
+  `Senha` char(42) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
