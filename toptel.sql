@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.4
+-- version 4.7.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 25, 2017 at 07:38 PM
--- Server version: 5.7.14
--- PHP Version: 5.6.25
+-- Generation Time: 25-Set-2017 às 21:54
+-- Versão do servidor: 10.1.25-MariaDB
+-- PHP Version: 7.1.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -17,39 +19,46 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `toptel`
+-- Database: `topitel`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `administrador`
+-- Estrutura da tabela `administrador`
 --
 
 CREATE TABLE `administrador` (
-  `Login` int(8) NOT NULL,
-  `Nome` char(60) NOT NULL,
+  `CPF` int(11) NOT NULL,
+  `Nome` varchar(60) NOT NULL,
   `Senha` int(24) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cliente`
+-- Estrutura da tabela `cliente`
 --
 
 CREATE TABLE `cliente` (
   `CPF` int(11) NOT NULL,
-  `Nome` char(60) NOT NULL,
-  `Email` char(30) DEFAULT NULL,
+  `Nome` varchar(60) NOT NULL,
+  `Email` varchar(30) DEFAULT NULL,
   `Telefone` int(12) DEFAULT NULL,
-  `Senha` char(42) NOT NULL
+  `Senha` varchar(42) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `cliente`
+--
+
+INSERT INTO `cliente` (`CPF`, `Nome`, `Email`, `Telefone`, `Senha`) VALUES
+(2147483647, 'asdsad', 'asdasdd', 123321123, 'd41d8cd98f00b204e9800998ecf8427e');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `quartos`
+-- Estrutura da tabela `quartos`
 --
 
 CREATE TABLE `quartos` (
@@ -62,7 +71,7 @@ CREATE TABLE `quartos` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `reserva`
+-- Estrutura da tabela `reserva`
 --
 
 CREATE TABLE `reserva` (
@@ -75,6 +84,12 @@ CREATE TABLE `reserva` (
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `administrador`
+--
+ALTER TABLE `administrador`
+  ADD PRIMARY KEY (`CPF`);
 
 --
 -- Indexes for table `cliente`
@@ -100,11 +115,12 @@ ALTER TABLE `reserva`
 --
 
 --
--- Constraints for table `reserva`
+-- Limitadores para a tabela `reserva`
 --
 ALTER TABLE `reserva`
   ADD CONSTRAINT `reserva_ibfk_1` FOREIGN KEY (`CPF`) REFERENCES `cliente` (`CPF`),
   ADD CONSTRAINT `reserva_ibfk_2` FOREIGN KEY (`NumeroQuarto`) REFERENCES `quartos` (`NumeroQuarto`);
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
