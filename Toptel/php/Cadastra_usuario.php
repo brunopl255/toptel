@@ -11,17 +11,24 @@ $telefone = $_POST['TELEFONE'];
 $senha = $_POST['SENHA'];
 
 
-echo $cpf." - ";
+/*echo $cpf." - ";
 echo $nome." - ";
 echo $email." - ";
 echo $telefone." - ";
-echo $senha." - ";
+echo $senha." - ";*/
 
 
     $senhaCryp = md5($senha);
     
 
+    $sql_consulta = ("SELECT * FROM CLIENTE WHERE CPF = '$cpf';");
+    $CONSULTA =  mysqli_query($strcon,$sql_consulta);
+
+    if(mysqli_num_rows($CONSULTA)>0){
+        echo 'Usuário já cadastrado.';
+    } else{
     $sql = ("INSERT INTO `cliente` (`CPF`, `NOME`, `EMAIL`, `TELEFONE`, `SENHA`) VALUES ('$cpf', '$nome', '$email', '$telefone', '$senhaCryp');");
-    print_r($sql);
+    //print_r($sql);
     $INSERT = mysqli_query($strcon, $sql) or die("Erro ao tentar cadastrar registro");
+    }
  ?>
