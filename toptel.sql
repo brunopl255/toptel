@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 25-Set-2017 às 22:13
+-- Generation Time: 25-Set-2017 às 22:49
 -- Versão do servidor: 10.1.25-MariaDB
 -- PHP Version: 7.1.7
 
@@ -21,8 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `toptel`
 --
-CREATE DATABASE IF NOT EXISTS `toptel` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
-USE `toptel`;
 
 -- --------------------------------------------------------
 
@@ -31,7 +29,7 @@ USE `toptel`;
 --
 
 CREATE TABLE `administrador` (
-  `CPF` int(11) NOT NULL,
+  `CPF` varchar(11) NOT NULL,
   `Nome` varchar(60) NOT NULL,
   `Senha` int(24) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -43,19 +41,12 @@ CREATE TABLE `administrador` (
 --
 
 CREATE TABLE `cliente` (
-  `CPF` int(11) NOT NULL,
+  `CPF` varchar(11) NOT NULL,
   `Nome` varchar(60) NOT NULL,
   `Email` varchar(30) DEFAULT NULL,
   `Telefone` int(12) DEFAULT NULL,
   `Senha` varchar(42) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Extraindo dados da tabela `cliente`
---
-
-INSERT INTO `cliente` (`CPF`, `Nome`, `Email`, `Telefone`, `Senha`) VALUES
-(2147483647, 'asdsad', 'asdasdd', 123321123, 'd41d8cd98f00b204e9800998ecf8427e');
 
 -- --------------------------------------------------------
 
@@ -77,7 +68,7 @@ CREATE TABLE `quartos` (
 --
 
 CREATE TABLE `reserva` (
-  `CPF` int(11) NOT NULL,
+  `CPF` varchar(11) NOT NULL,
   `NumeroQuarto` int(4) NOT NULL,
   `DataDeEntrada` date NOT NULL,
   `DataDeSaida` date NOT NULL
@@ -109,7 +100,6 @@ ALTER TABLE `quartos`
 -- Indexes for table `reserva`
 --
 ALTER TABLE `reserva`
-  ADD PRIMARY KEY (`CPF`,`NumeroQuarto`),
   ADD KEY `NumeroQuarto` (`NumeroQuarto`);
 
 --
@@ -120,7 +110,6 @@ ALTER TABLE `reserva`
 -- Limitadores para a tabela `reserva`
 --
 ALTER TABLE `reserva`
-  ADD CONSTRAINT `reserva_ibfk_1` FOREIGN KEY (`CPF`) REFERENCES `cliente` (`CPF`),
   ADD CONSTRAINT `reserva_ibfk_2` FOREIGN KEY (`NumeroQuarto`) REFERENCES `quartos` (`NumeroQuarto`);
 COMMIT;
 
