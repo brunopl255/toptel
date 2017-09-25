@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 25-Set-2017 às 21:54
+-- Generation Time: 25-Set-2017 às 22:13
 -- Versão do servidor: 10.1.25-MariaDB
 -- PHP Version: 7.1.7
 
@@ -19,8 +19,10 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `topitel`
+-- Database: `toptel`
 --
+CREATE DATABASE IF NOT EXISTS `toptel` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+USE `toptel`;
 
 -- --------------------------------------------------------
 
